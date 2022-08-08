@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
             loadimg.launch(intent)
         }
         binding.btnLearn.setOnClickListener {
-            learn()
+            if (!binding.chkLearnDetail.isChecked) learn(LearnType.ACCURATE)
+            else learn(LearnType.CONTOUR)
         }
     }
     private var loadimg = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             binding.imgProcess.setImageURI(selectedImgUri)
         }
     }
-    private fun learn() {
+    private fun learn(learntype: LearnType) {
         if(binding.imgProcess.drawable == null) return
         val imgbitmap = binding.imgProcess.drawToBitmap()
         //Prepare the input image
@@ -58,7 +59,11 @@ class MainActivity : AppCompatActivity() {
             .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
             .build()
         //Get an instance of FaceDetector
-        val detector = FaceDetection.getClient(highAccuracyOpts)
+        var detector: FaceDetector
+        when(learntype) {
+            LearnType.ACCURATE -> detector = FaceDetection.getClient(highAccuracyOpts)
+            else -> detector = FaceDetection.getClient(realTimeOpts)
+        }
 
         val canvas = Canvas(imgbitmap)
         //Process the image
@@ -80,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             isAntiAlias = true
             color = Color.RED
             style = Paint.Style.STROKE//Paint.Style.FILL//
-            strokeWidth = 8F
+            strokeWidth = 5F
         }
         //processFaceList(faces)
         for (face in faces) {
@@ -167,4 +172,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+}
+
+enum class LearnType() {
+    ACCURATE,
+    CONTOUR,
 }
