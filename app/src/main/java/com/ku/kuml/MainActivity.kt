@@ -122,6 +122,27 @@ class MainActivity : AppCompatActivity() {
                     canvas.drawPoint(c.x, c.y, paint)
                 }
             }
+            //right eyebrow top
+            contour = face.getContour(FaceContour.RIGHT_EYEBROW_TOP)?.points
+            if(contour != null) {
+                for (c in contour) {
+                    canvas.drawPoint(c.x, c.y, paint)
+                }
+            }
+            //right eyebrow bottom
+            contour = face.getContour(FaceContour.RIGHT_EYEBROW_BOTTOM)?.points
+            if(contour != null) {
+                for (c in contour) {
+                    canvas.drawPoint(c.x, c.y, paint)
+                }
+            }
+            //right eye
+            contour = face.getContour(FaceContour.RIGHT_EYE)?.points
+            if(contour != null) {
+                for (c in contour) {
+                    canvas.drawPoint(c.x, c.y, paint)
+                }
+            }
             //upper lip top
             contour = face.getContour(FaceContour.UPPER_LIP_TOP)?.points
             if(contour != null) {
