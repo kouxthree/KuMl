@@ -40,4 +40,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_process" />
 
+    <LinearLayout
+        android:id="@+id/layoutBearings"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chkLearnDetail"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/img_mask"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@color/white"
+            android:layout_marginHorizontal="5dp"
+            android:src="@drawable/mask"/>
+        <ImageView
+            android:id="@+id/img_hat"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@color/white"
+            android:layout_marginHorizontal="5dp"
+            android:src="@drawable/hat"/>
+        <ImageView
+            android:id="@+id/img_sunglasses"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@color/white"
+            android:layout_marginHorizontal="5dp"
+            android:src="@drawable/sunglasses" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
