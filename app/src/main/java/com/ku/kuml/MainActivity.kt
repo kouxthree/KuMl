@@ -599,6 +599,7 @@ class MainActivity : AppCompatActivity() {
             val decoRect = RectF(startP.x, startP.y, endP.x, endP.y)//decoration rectangle
             canvas.drawBitmap(sunglassesBitmap, null, decoRect, paint)
             canvas.restore()
+
         }
     }
 }
