@@ -55,12 +55,19 @@ class MainActivity : AppCompatActivity() {
             selectedSunglasses = selectFlag[0]
             decorate()
         }
+        binding.imgBeard.setOnClickListener {
+            val selectFlag = ArrayList<Boolean>()
+            selectFlag.add(selectedBeard)
+            switchImageViewSelectState(selectFlag, binding.imgBeard)
+            selectedBeard = selectFlag[0]
+            decorate()
+        }
 
         //import decorate images
         hatBitmap = BitmapFactory.decodeResource(resources, R.drawable.hat)
         maskBitmap = BitmapFactory.decodeResource(resources, R.drawable.mask)
         sunglassesBitmap = BitmapFactory.decodeResource(resources, R.drawable.sunglasses)
-
+        beardBitmap = BitmapFactory.decodeResource(resources, R.drawable.beard)
     }
 
     private var selectedImgUri: Uri? = null
@@ -228,9 +235,11 @@ class MainActivity : AppCompatActivity() {
     private var selectedHat: Boolean = false
     private var selectedMask: Boolean = false
     private var selectedSunglasses: Boolean = false
+    private var selectedBeard: Boolean = false
     private lateinit var hatBitmap: Bitmap
     private lateinit var maskBitmap: Bitmap
     private lateinit var sunglassesBitmap: Bitmap
+    private lateinit var beardBitmap: Bitmap
     private fun switchImageViewSelectState(selectFlag: ArrayList<Boolean>, img: ImageView) {
         if (selectFlag[0]) img.setBackgroundColor(Color.WHITE)//disselect
         else img.setBackgroundColor(Color.GREEN)//select
@@ -292,6 +301,20 @@ class MainActivity : AppCompatActivity() {
                 .addOnSuccessListener { faces ->
                     // Task completed successfully
                     decorateSunglasses(faces, canvas, paint)
+                    //result image bitmap
+                    binding.imgProcess.setImageBitmap(imgbitmap)
+                }
+                .addOnFailureListener { e ->
+                    // Task failed with an exception
+                }
+        }
+        //Process the image//add beard
+        if (selectedBeard) {
+            FaceDetection.getClient(realTimeOpts).process(image)
+//            FaceDetection.getClient(highAccuracyOpts).process(image)
+                .addOnSuccessListener { faces ->
+                    // Task completed successfully
+                    decorateBeard(faces, canvas, paint)
                     //result image bitmap
                     binding.imgProcess.setImageBitmap(imgbitmap)
                 }
@@ -600,6 +623,32 @@ class MainActivity : AppCompatActivity() {
             canvas.drawBitmap(sunglassesBitmap, null, decoRect, paint)
             canvas.restore()
 
+        }
+    }
+    private fun decorateBeard(faces: List<Face>, canvas: Canvas, paint: Paint) {
+        //processFaceList(faces)
+        for (face in faces) {
+            var miny = 0F
+            var maxy = 0F
+            var minx = 0F
+            var maxx = 0F
+
+            //nose bridge
+            var contour = face.getContour(FaceContour.NOSE_BOTTOM)?.points
+            if (contour != null) {
+                miny = contour?.minBy { it -> it.y }?.y!!
+            }
+            //face
+            contour = face.getContour(FaceContour.FACE)?.points
+            if (contour != null) {
+                minx = contour?.minBy { it -> it.x }?.x!!
+                maxx = contour?.maxBy { it -> it.x }?.x!!
+                maxy = contour?.maxBy { it -> it.y }?.y!!
+            }
+            maxy += (maxy-miny)/2
+            val decoRect =
+                RectF(minx, miny, maxx, maxy)//decoration rectangle
+            canvas.drawBitmap(beardBitmap, null, decoRect, paint)
         }
     }
 }

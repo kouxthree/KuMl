@@ -13,6 +13,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import com.ku.kuml.CameraMainActivity
 import com.ku.kuml.MainActivity
 import com.ku.kuml.databinding.ActivityLoginBinding
 
@@ -33,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
+        val startCamera = binding.startCamera
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -105,6 +107,13 @@ class LoginActivity : AppCompatActivity() {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
+        }
+
+        startCamera!!.setOnClickListener {
+            val intent = Intent(this, CameraMainActivity::class.java).apply {
+//                putExtra(EXTRA_MESSAGE, message)
+            }
+            startActivity(intent)
         }
 
         //stub

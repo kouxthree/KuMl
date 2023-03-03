@@ -54,7 +54,7 @@
             android:id="@+id/img_mask"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.25"
             android:background="@color/white"
             android:layout_marginHorizontal="5dp"
             android:src="@drawable/mask"/>
@@ -62,7 +62,7 @@
             android:id="@+id/img_hat"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.25"
             android:background="@color/white"
             android:layout_marginHorizontal="5dp"
             android:src="@drawable/hat"/>
@@ -70,10 +70,18 @@
             android:id="@+id/img_sunglasses"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.25"
             android:background="@color/white"
             android:layout_marginHorizontal="5dp"
             android:src="@drawable/sunglasses" />
+        <ImageView
+            android:id="@+id/img_beard"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="@color/white"
+            android:layout_marginHorizontal="5dp"
+            android:src="@drawable/beard" />
     </LinearLayout>
 
 
