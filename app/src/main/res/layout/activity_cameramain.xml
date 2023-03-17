@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ImageView
+        android:id="@+id/img_beard"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/vertical_line2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/beard" />
+
     <Button
         android:id="@+id/image_capture_button"
         android:layout_width="110dp"
