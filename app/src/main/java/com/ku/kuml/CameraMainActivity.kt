@@ -211,18 +211,18 @@ class CameraMainActivity : AppCompatActivity() {
 //                        Log.d(TAG, "Average luminosity: $luma")
 //                    })
 //                }
-            // High-accuracy landmark detection and face classification
-            val highAccuracyOpts = FaceDetectorOptions.Builder()
-                .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
-                .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
-                .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
+//            // High-accuracy landmark detection and face classification
+//            val highAccuracyOpts = FaceDetectorOptions.Builder()
+//                .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
+//                .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+//                .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
+//                .build()
+            // Real-time contour detection
+            val realTimeOpts = FaceDetectorOptions.Builder()
+                .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
                 .build()
-//    // Real-time contour detection
-//    val realTimeOpts = FaceDetectorOptions.Builder()
-//        .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
-//        .build()
             //Get an instance of FaceDetector
-            val detector = FaceDetection.getClient(highAccuracyOpts)
+            val detector = FaceDetection.getClient(realTimeOpts)//highAccuracyOpts)
             val imageAnalyzer = ImageAnalysis.Builder()
                 .build()
                 .also {

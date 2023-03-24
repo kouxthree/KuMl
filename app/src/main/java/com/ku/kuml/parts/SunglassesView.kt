@@ -29,7 +29,7 @@ class SunglassesView: View {
         mPaint.isAntiAlias = true
         mPaint.isDither = true
         mPaint.color = Color.RED //Color.MAGENTA
-        //mPaint.alpha = 128
+        mPaint.alpha = 128
         mPaint.style = Paint.Style.FILL_AND_STROKE
     }
 
