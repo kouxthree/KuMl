@@ -44,10 +44,10 @@ class SunglassesView: View {
         if(mFaces == null) return
         for (face in mFaces!!) {
             if(face == null) continue
-//            matrix.postScale(width / 2000f, height / 2000f)
-//            matrix.postTranslate(width / 2f, height / 2f)
+            matrix.postScale(width / 2000f, height / 2000f)
+            matrix.postTranslate(width / 2f, height / 2f)
             val saveCount = canvas.save()
-//            canvas.concat(matrix)
+            canvas.concat(matrix)
             canvas.drawRect(face.boundingBox, mPaint)
             canvas.restoreToCount(saveCount)
         }
